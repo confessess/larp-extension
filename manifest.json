@@ -1,0 +1,51 @@
+{
+    "manifest_version": 3,
+    "name": "LarpBlox",
+    "version": "1.0",
+    "description": "Larp tool for Roblox",
+    "permissions": [
+        "storage"
+    ],
+    "host_permissions": [
+        "*://*.roblox.com/*"
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' https://*.roblox.com https://*.rbxcdn.com"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.roblox.com/*"
+            ],
+            "js": [
+                "avatarRenderer.js",
+                "js/state.js",
+                "js/theme.js",
+                "js/utils.js",
+                "js/styles.js",
+                "js/avatar.js",
+                "js/avatar_ui.js",
+                "js/purchase.js",
+                "js/ui.js",
+                "content.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "robux.png",
+                "robux2.png",
+                "roblox_logo.png",
+                "hook.js"
+            ],
+            "matches": [
+                "*://*.roblox.com/*"
+            ]
+        }
+    ]
+}
