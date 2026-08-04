@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "LarpBlox",
+    "name": "Unsuspecting",
     "version": "1.0",
-    "description": "Larp tool for Roblox",
+    "description": "Made by @sopleased on discord",
     "permissions": [
         "storage"
     ],

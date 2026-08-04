@@ -1,25 +1,25 @@
 /* ═══════════════════════════════════════════
-   LarpBlox Popup — Premium Dark UI
+   Larp.exe Popup — Frost UI
    ═══════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --primary: #8b5cf6;
-    --primary-light: #a78bfa;
-    --primary-dark: #6d28d9;
-    --accent: #6366f1;
-    --bg: #0c0a13;
+    --primary: #00d4ff;
+    --primary-light: #80eeff;
+    --primary-dark: #0099cc;
+    --accent: #00a8e8;
+    --bg: #0a1628;
     --surface: rgba(255, 255, 255, 0.04);
     --surface-hover: rgba(255, 255, 255, 0.07);
     --border: rgba(255, 255, 255, 0.06);
-    --border-focus: rgba(139, 92, 246, 0.5);
-    --text: #f1f0f5;
-    --text-dim: #7c7a85;
-    --text-muted: #504e59;
-    --danger: #ef4444;
-    --danger-dim: rgba(239, 68, 68, 0.12);
-    --success: #34d399;
+    --border-focus: rgba(0, 212, 255, 0.5);
+    --text: #e0f7ff;
+    --text-dim: #7aa8b8;
+    --text-muted: #4a6b7a;
+    --danger: #ff4d6d;
+    --danger-dim: rgba(255, 77, 109, 0.12);
+    --success: #00ffcc;
     --radius: 14px;
     --radius-sm: 10px;
 }
@@ -77,31 +77,13 @@ body {
 }
 
 @keyframes glowPulse1 {
-
-    0%,
-    100% {
-        opacity: 0.25;
-        transform: scale(1);
-    }
-
-    50% {
-        opacity: 0.4;
-        transform: scale(1.15);
-    }
+    0%, 100% { opacity: 0.25; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.15); }
 }
 
 @keyframes glowPulse2 {
-
-    0%,
-    100% {
-        opacity: 0.2;
-        transform: scale(1);
-    }
-
-    50% {
-        opacity: 0.35;
-        transform: scale(1.1);
-    }
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(1.1); }
 }
 
 /* ── Header ── */
@@ -125,8 +107,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(99, 102, 241, 0.1));
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 168, 232, 0.1));
+    border: 1px solid rgba(0, 212, 255, 0.2);
     border-radius: 12px;
     flex-shrink: 0;
 }
@@ -179,7 +161,7 @@ header {
 }
 
 .card:hover {
-    border-color: rgba(139, 92, 246, 0.15);
+    border-color: rgba(0, 212, 255, 0.15);
 }
 
 /* ── Input Group ── */
@@ -239,7 +221,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 input[type="number"]:focus {
     border-color: var(--border-focus);
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1), inset 0 0 0 1px rgba(139, 92, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1), inset 0 0 0 1px rgba(0, 212, 255, 0.1);
     background: rgba(0, 0, 0, 0.45);
 }
 
@@ -288,28 +270,28 @@ button:active {
 .primary-btn {
     background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
     color: white;
-    box-shadow: 0 2px 12px rgba(139, 92, 246, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 12px rgba(0, 212, 255, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .primary-btn:hover {
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.45), 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.45), 0 1px 3px rgba(0, 0, 0, 0.2);
     transform: translateY(-1px);
 }
 
 .primary-btn:active {
     transform: translateY(0) scale(0.98);
-    box-shadow: 0 1px 8px rgba(139, 92, 246, 0.25);
+    box-shadow: 0 1px 8px rgba(0, 212, 255, 0.25);
 }
 
 .secondary-btn {
     background: var(--danger-dim);
     color: var(--danger);
-    border: 1px solid rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(255, 77, 109, 0.15);
 }
 
 .secondary-btn:hover {
-    background: rgba(239, 68, 68, 0.18);
-    border-color: rgba(239, 68, 68, 0.25);
+    background: rgba(255, 77, 109, 0.18);
+    border-color: rgba(255, 77, 109, 0.25);
 }
 
 .secondary-btn:active {
@@ -317,7 +299,7 @@ button:active {
 }
 
 .secondary-style {
-    background: linear-gradient(135deg, #1e1b2e 0%, #161424 100%);
+    background: linear-gradient(135deg, #0d1f2d 0%, #0a1628 100%);
     border: 1px solid var(--border);
     color: var(--text);
     margin-top: -6px;
@@ -359,23 +341,14 @@ footer {
     height: 8px;
     border-radius: 50%;
     background: var(--success);
-    box-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
+    box-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
     animation: dotPulse 2s ease-in-out infinite;
     flex-shrink: 0;
 }
 
 @keyframes dotPulse {
-
-    0%,
-    100% {
-        box-shadow: 0 0 8px rgba(52, 211, 153, 0.4);
-        transform: scale(1);
-    }
-
-    50% {
-        box-shadow: 0 0 14px rgba(52, 211, 153, 0.7);
-        transform: scale(1.15);
-    }
+    0%, 100% { box-shadow: 0 0 8px rgba(0, 255, 204, 0.4); transform: scale(1); }
+    50% { box-shadow: 0 0 14px rgba(0, 255, 204, 0.7); transform: scale(1.15); }
 }
 
 .status-text {
@@ -392,30 +365,37 @@ footer {
 }
 
 /* ── Fade-in animation ── */
-.container>* {
+.container > * {
     animation: fadeSlideUp 0.4s ease both;
 }
 
-.container>*:nth-child(3) {
-    animation-delay: 0.05s;
-}
-
-.container>*:nth-child(4) {
-    animation-delay: 0.12s;
-}
-
-.container>*:nth-child(5) {
-    animation-delay: 0.19s;
-}
+.container > *:nth-child(3) { animation-delay: 0.05s; }
+.container > *:nth-child(4) { animation-delay: 0.12s; }
+.container > *:nth-child(5) { animation-delay: 0.19s; }
 
 @keyframes fadeSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* ── Snowflakes ── */
+.snowflake {
+    position: absolute;
+    color: rgba(0, 212, 255, 0.15);
+    font-size: 14px;
+    pointer-events: none;
+    z-index: 0;
+    animation: snowfall linear infinite;
+}
+
+.sf-1 { top: 15%; left: 8%; animation-duration: 8s; animation-delay: 0s; font-size: 12px; }
+.sf-2 { top: 35%; right: 10%; animation-duration: 10s; animation-delay: 2s; font-size: 10px; }
+.sf-3 { top: 55%; left: 5%; animation-duration: 12s; animation-delay: 4s; font-size: 14px; }
+.sf-4 { top: 70%; right: 15%; animation-duration: 9s; animation-delay: 1s; font-size: 11px; }
+.sf-5 { top: 85%; left: 20%; animation-duration: 11s; animation-delay: 3s; font-size: 9px; }
+
+@keyframes snowfall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.15; }
+    50% { opacity: 0.08; }
+    100% { transform: translateY(20px) rotate(180deg); opacity: 0.15; }
 }

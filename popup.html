@@ -4,17 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LarpBlox</title>
+    <title>Unsuspecting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="popup.css">
+<base target="_blank">
 </head>
 
 <body>
     <div class="container">
         <div class="glow glow-1"></div>
         <div class="glow glow-2"></div>
+
+        <div class="snowflake sf-1">&#10052;</div>
+        <div class="snowflake sf-2">&#10053;</div>
+        <div class="snowflake sf-3">&#10052;</div>
+        <div class="snowflake sf-4">&#10053;</div>
+        <div class="snowflake sf-5">&#10052;</div>
 
         <header>
             <div class="logo-row">
@@ -32,8 +39,8 @@
                     </svg>
                 </div>
                 <div class="logo-text">
-                    <h1>LarpBlox</h1>
-                    <p>Basic larp tool for Roblox</p>
+                    <h1>Unsuspecting</h1>
+                    <p>Frost injection toolkit</p>
                 </div>
             </div>
             <div class="version-badge">v1.0</div>
@@ -93,37 +100,7 @@
                 </div>
             </div>
 
-            <div class="card" style="max-height: 320px; display: flex; flex-direction: column;">
-                <div class="input-group">
-                    <label>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                            <polyline points="14 2 14 8 20 8"/>
-                            <line x1="16" y1="13" x2="8" y2="13"/>
-                            <line x1="16" y1="17" x2="8" y2="17"/>
-                        </svg>
-                        Fake Transactions
-                    </label>
-                    <div id="transaction-list" style="max-height: 100px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px;"></div>
-                    <div style="display: flex; flex-direction: column; gap: 6px;">
-                        <input type="text" id="tx-desc" placeholder="Description" style="padding: 8px 12px; background: rgba(0,0,0,0.35); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-size: 0.8rem; outline: none;">
-                        <div style="display: flex; gap: 6px;">
-                            <select id="tx-type" style="flex: 1; padding: 8px 12px; background: rgba(0,0,0,0.35); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-size: 0.8rem; outline: none;">
-                                <option value="Purchase">Purchase</option>
-                                <option value="Sale">Sale</option>
-                                <option value="Stipend">Stipend</option>
-                                <option value="Group Payout">Group Payout</option>
-                                <option value="Trade">Trade</option>
-                                <option value="Premium">Premium</option>
-                                <option value="Gift">Gift</option>
-                            </select>
-                            <input type="number" id="tx-amount" placeholder="Amount (+/-)" style="flex: 1; padding: 8px 12px; background: rgba(0,0,0,0.35); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-size: 0.8rem; outline: none;">
-                        </div>
-                        <input type="date" id="tx-date" style="padding: 8px 12px; background: rgba(0,0,0,0.35); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-size: 0.8rem; outline: none;">
-                        <button id="add-tx-btn" class="primary-btn" style="padding: 8px; font-size: 0.75rem; margin: 0;">Add Transaction</button>
-                    </div>
-                </div>
-            </div>
+
 
             <footer>
                 <div class="status-row">
