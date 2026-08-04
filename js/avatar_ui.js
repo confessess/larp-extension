@@ -59,7 +59,13 @@ function handleInventoryInjection() {
 
 
 
-
+        const equippedBadge = isEquipped ? `
+            <div class="larp-check-overlay">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6L9 17L4 12" stroke="#393b3d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        ` : '';
 
 
 
@@ -76,6 +82,9 @@ function handleInventoryInjection() {
                 <div class="item-card-thumb"
                      data-thumbnail-target-id="${item.id}"
                      data-thumbnail-type="Asset">
+
+
+                    ${equippedBadge}
 
 
                     <span class="thumbnail-2d-container">
@@ -165,12 +174,26 @@ function handleInventoryInjection() {
             e.preventDefault();
             state.equipped ||= [];
 
+            const thumb = el.querySelector('.item-card-thumb');
+            if (!thumb) return;
+
             if (state.equipped.includes(item.id)) {
                 state.equipped = state.equipped.filter(id => id !== item.id);
                 el.classList.remove('larp-equipped');
+                const check = thumb.querySelector('.larp-check-overlay');
+                if (check) check.remove();
             } else {
                 state.equipped.push(item.id);
                 el.classList.add('larp-equipped');
+                if (!thumb.querySelector('.larp-check-overlay')) {
+                    thumb.insertAdjacentHTML('afterbegin', `
+                        <div class="larp-check-overlay">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M20 6L9 17L4 12" stroke="#393b3d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    `);
+                }
             }
 
             chrome.storage.local.set({ equipped: state.equipped });

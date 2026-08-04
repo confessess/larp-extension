@@ -85,26 +85,33 @@ larpStyle.textContent = `
         pointer-events: none;
     }
 
-    /* Check badge top right */
-    [data-sim-id].larp-equipped .item-card-thumb-container::before {
-        content: "✓";
+    /* Check badge — real DOM element inside .item-card-thumb */
+    [data-sim-id] .item-card-thumb {
+        position: relative !important;
+    }
+
+    [data-sim-id] .larp-check-overlay {
         position: absolute;
         top: 8px;
         right: 8px;
-        width: 24px;
-        height: 24px;
-        background: #00a2ff;
-        border-radius: 50%;
+        width: 26px;
+        height: 26px;
+        background: #ffffff;
+        border-radius: 4px;
         z-index: 20;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
-        font-size: 16px;
-        font-weight: 900;
-        line-height: 24px;
-        text-align: center;
         pointer-events: none;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    }
+
+    [data-sim-id] .larp-check-overlay svg {
+        display: block;
+    }
+
+    [data-sim-id] .larp-check-overlay path {
+        stroke: #393b3d;
     }
 
     /* Item name — let Roblox's native font cascade through */
