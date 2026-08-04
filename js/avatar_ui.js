@@ -61,7 +61,7 @@ function handleInventoryInjection() {
 
         const equippedBadge = isEquipped ? `
             <div class="larp-check-overlay">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
                     <path d="M20 6L9 17L4 12" stroke="#393b3d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
@@ -188,7 +188,7 @@ function handleInventoryInjection() {
                 if (!thumb.querySelector('.larp-check-overlay')) {
                     thumb.insertAdjacentHTML('afterbegin', `
                         <div class="larp-check-overlay">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
                                 <path d="M20 6L9 17L4 12" stroke="#393b3d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>

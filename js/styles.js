@@ -94,8 +94,8 @@ larpStyle.textContent = `
         position: absolute;
         top: 8px;
         right: 8px;
-        width: 26px;
-        height: 26px;
+        width: 24px;
+        height: 24px;
         background: #ffffff;
         border-radius: 4px;
         z-index: 20;
@@ -111,7 +111,7 @@ larpStyle.textContent = `
     }
 
     [data-sim-id] .larp-check-overlay path {
-        stroke: #393b3d;
+        stroke: #6b6b6b;
     }
 
     /* Item name — let Roblox's native font cascade through */
