@@ -29,11 +29,25 @@
             const txs = res.transactions || [];
             const bal = res.fakeRobux || 10000000;
 
-            const tbody = document.querySelector('.table-body, .table-tbody, tbody, .transactions-list, [data-testid="transactions-list"], .list-body');
-            if (!tbody) return;
+            // Find the actual table body - Roblox uses specific classes
+            const tbody = document.querySelector('.table-body, .table-tbody, tbody');
+            if (!tbody) {
+                // Page might not be fully loaded yet, try again
+                setTimeout(inject, 500);
+                return;
+            }
 
-            const realRows = tbody.querySelectorAll('tr, .list-item, [class*="transaction"], [data-testid*="transaction"]');
-            realRows.forEach(r => r.style.display = 'none');
+            // Only hide REAL transaction rows, not headers or the whole page
+            // Roblox transaction rows have specific data attributes
+            const realRows = tbody.querySelectorAll('tr[data-item-id], tr[class*="transaction"], .list-item');
+            realRows.forEach(r => {
+                // Don't hide if it's already our row
+                if (!r.classList.contains('larp-tx-row')) {
+                    r.style.display = 'none';
+                }
+            });
+
+            // Remove old larp rows to avoid duplicates
             tbody.querySelectorAll('.larp-tx-row').forEach(r => r.remove());
 
             const sorted = [...txs].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -82,6 +96,7 @@
                 tbody.appendChild(el);
             });
 
+            // Update balance displays
             document.querySelectorAll('.robux-balance, .amount.icon-robux-container, [data-testid="robux-amount"], .balance-label').forEach(el => {
                 if (!el.closest('.larp-tx-row') && !el.closest('tr')) el.textContent = bal.toLocaleString();
             });
@@ -89,7 +104,17 @@
     }
 
     injectStyle();
-    inject();
-    const obs = new MutationObserver(() => { if (!document.querySelector('.larp-tx-row')) inject(); });
+    
+    // Wait for page to actually load before first inject
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', inject);
+    } else {
+        inject();
+    }
+    
+    // Re-inject when content changes (SPA navigation)
+    const obs = new MutationObserver(() => { 
+        if (!document.querySelector('.larp-tx-row')) inject(); 
+    });
     if (document.body) obs.observe(document.body, { childList: true, subtree: true });
 })();
