@@ -128,7 +128,7 @@ function handleInventoryInjection() {
 
 
         grid.insertAdjacentHTML(
-            'beforeend',
+            'afterbegin',
             itemHTML
         );
 
