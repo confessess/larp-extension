@@ -27,22 +27,17 @@ function handleInventoryInjection() {
 
     if (!grid) return;
 
-
     const realCard = grid.querySelector(
         '.item-card:not([data-sim-id])'
     );
-
 
     state.inventory.forEach(item => {
 
         if (grid.querySelector(`[data-sim-id="${item.id}"]`))
             return;
 
-
         const isEquipped =
             (state.equipped || []).includes(item.id);
-
-
 
         let limitedBadge = '';
 
@@ -57,26 +52,12 @@ function handleInventoryInjection() {
             `;
         }
 
-
-
+        // White box with black checkmark - matches Roblox native equipped style
         const equippedBadge = isEquipped ? `
-            <div class="item-card-equipped" data-item-status="equipped">
-                <div class="item-card-equipped-label"></div>
-                <span class="larp-check-icon">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-        <path 
-            d="M20 6L9 17L4 12"
-            stroke="white"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-        />
-    </svg>
-</span>
+            <div class="larp-equipped-badge">
+                <div class="larp-equipped-check"></div>
             </div>
         ` : '';
-
-
 
         const itemHTML = `
         <li class="item-card avatar-card ${isEquipped ? 'larp-equipped' : ''}"
@@ -87,14 +68,11 @@ function handleInventoryInjection() {
                data-item-name="${item.name}"
                data-availability-status="Available">
 
-
                 <div class="item-card-thumb"
                      data-thumbnail-target-id="${item.id}"
                      data-thumbnail-type="Asset">
 
-
                     ${equippedBadge}
-
 
                     <span class="thumbnail-2d-container">
 
@@ -104,14 +82,11 @@ function handleInventoryInjection() {
 
                     </span>
 
-
                     ${limitedBadge}
 
                 </div>
 
-
             </a>
-
 
             <div class="item-card-details">
 
@@ -125,31 +100,23 @@ function handleInventoryInjection() {
         </li>
         `.replace(/>\s+</g, '><').trim();
 
-
-
         grid.insertAdjacentHTML(
             'beforeend',
             itemHTML
         );
-
-
 
         const el =
             grid.querySelector(
                 `[data-sim-id="${item.id}"]`
             );
 
-
         if (!el) return;
-
-
 
         // Match Roblox card spacing
         if (realCard) {
 
             const styles =
                 window.getComputedStyle(realCard);
-
 
             [
                 "width",
@@ -172,15 +139,11 @@ function handleInventoryInjection() {
             });
         }
 
-
-
         el.addEventListener('click', e => {
 
             e.preventDefault();
 
-
             state.equipped ||= [];
-
 
             if (state.equipped.includes(item.id)) {
 
@@ -189,47 +152,31 @@ function handleInventoryInjection() {
                         id => id !== item.id
                     );
 
-
                 el.classList.remove(
                     'larp-equipped'
                 );
 
-
                 el.querySelector(
-                    '.item-card-equipped'
+                    '.larp-equipped-badge'
                 )?.remove();
-
 
             } else {
 
                 state.equipped.push(item.id);
 
-
                 el.classList.add(
                     'larp-equipped'
                 );
 
-
-                if (!el.querySelector('.item-card-equipped')) {
+                if (!el.querySelector('.larp-equipped-badge')) {
 
                     el.querySelector(
                         '.item-card-thumb'
                     ).insertAdjacentHTML(
                         'afterbegin',
                         `
-                        <div class="item-card-equipped" data-item-status="equipped">
-                            <div class="item-card-equipped-label"></div>
-                            <span class="larp-check-icon">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-        <path 
-            d="M20 6L9 17L4 12"
-            stroke="white"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-        />
-    </svg>
-</span>
+                        <div class="larp-equipped-badge">
+                            <div class="larp-equipped-check"></div>
                         </div>
                         `
                     );
@@ -238,17 +185,13 @@ function handleInventoryInjection() {
 
             }
 
-
             chrome.storage.local.set({
                 equipped: state.equipped
             });
 
-
             handleAvatarLarping();
 
         });
-
-
 
         // Repair thumbnails
         if ((!item.image || item.image === "") && item.assetId) {
@@ -262,19 +205,15 @@ function handleInventoryInjection() {
                 const url =
                     data?.data?.[0]?.imageUrl;
 
-
                 if (url) {
 
                     item.image = url;
 
-
                     const img =
                         el.querySelector('img');
 
-
                     if (img)
                         img.src = url;
-
 
                     chrome.storage.local.set({
                         inventory: state.inventory
