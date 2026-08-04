@@ -30,7 +30,6 @@ function applyGlobalStyles() {
     (document.head || document.documentElement).appendChild(style);
 }
 
-
 // Add Global Style Fixes for Larp items
 const larpStyle = document.createElement('style');
 
@@ -46,7 +45,6 @@ larpStyle.textContent = `
         --larp-modal-text: #FFFFFF;
     }
 
-
     [data-theme-light], .light-theme {
         --larp-bg: #EBEDEF;
         --larp-border: #D6D6D6;
@@ -58,232 +56,124 @@ larpStyle.textContent = `
         --larp-modal-text: #191B1D;
     }
 
-
-
     /* Larp injected cards */
     .avatar-card[data-sim-id],
     .list-item[data-sim-id].item-card {
-
         list-style: none !important;
         position: relative !important;
         box-sizing: border-box !important;
     }
-
-
 
     /* Equipped state */
     [data-sim-id] {
         cursor: pointer;
     }
 
-
     [data-sim-id] .item-card-thumb-container {
-
         position: relative !important;
-
         display: block !important;
     }
 
-
-
     /* Dark overlay while worn */
-    [data-sim-id].larp-equipped 
-    .item-card-thumb-container::after {
-
+    [data-sim-id].larp-equipped .item-card-thumb-container::after {
         content: "";
-
         position: absolute;
-
         inset: 0;
-
         background: rgba(0, 0, 0, 0.55);
-
         border-radius: 6px;
-
         z-index: 10;
-
         pointer-events: none;
     }
 
+    /* Check badge top right */
+    [data-sim-id].larp-equipped .item-card-thumb-container::before {
+        content: "✓";
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 24px;
+        height: 24px;
+        background: #00a2ff;
+        border-radius: 50%;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 16px;
+        font-weight: 900;
+        line-height: 24px;
+        text-align: center;
+        pointer-events: none;
+    }
 
-
-   /* Check badge top right */
-[data-sim-id].larp-equipped 
-.item-card-thumb-container::before {
-
-    content: "✓";
-
-    position: absolute;
-
-    top: 8px;
-
-    right: 8px;
-
-
-    width: 24px;
-
-    height: 24px;
-
-
-    background: #00a2ff;
-
-
-    border-radius: 50%;
-
-
-    z-index: 20;
-
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-
-    color: white;
-
-
-    font-size: 16px;
-
-    font-weight: 900;
-
-
-    line-height: 24px;
-
-
-    text-align: center;
-
-
-    pointer-events: none;
-}
-
-
-
-    /* Item name */
+    /* Item name — let Roblox's native font cascade through */
     [data-sim-id] .item-card-name {
-
-        margin-top: 2px !important;
-
-        font-size: 14px !important;
-
-        font-weight: 700 !important;
-
-        color: var(--larp-text) !important;
-
+        margin-top: 6px !important;
         line-height: 1.2 !important;
-
         max-height: 34px !important;
-
         overflow: hidden !important;
-
         display: -webkit-box !important;
-
         -webkit-line-clamp: 2 !important;
-
         -webkit-box-orient: vertical !important;
     }
 
-
-
+    /* Item creator — also native font */
     [data-sim-id] .item-card-creator {
-
-        font-size: 12px !important;
-
-        color: var(--larp-subtext) !important;
-
         margin-top: 4px !important;
-
         line-height: 1.2 !important;
-
         height: 14px !important;
-
         overflow: hidden !important;
     }
 
-
-
+    /* Price/owned label — native font */
     [data-sim-id] .item-card-price {
-
-        font-size: 14px !important;
-
-        font-weight: 700 !important;
-
-        color: var(--larp-subtext) !important;
-
         margin-top: 7px !important;
-
         display: flex !important;
-
         align-items: center !important;
     }
 
-
-
     .larp-wearing-item,
     .larp-thumb-bg {
-
         background: var(--larp-bg) !important;
-
         border: none !important;
     }
 
-
-
     .larp-wearing-item img,
     .larp-thumb-bg img {
-
         background: transparent !important;
     }
 
-
-
     /* Modal Styling */
     .larp-modal {
-
         background: var(--larp-modal-bg) !important;
-
         color: var(--larp-modal-text) !important;
     }
 
-
     .larp-modal hr {
-
         border-top: 1px solid var(--larp-modal-hr) !important;
     }
 
-
     .larp-modal p,
     .larp-modal div {
-
         color: var(--larp-modal-text) !important;
     }
 
-
     .larp-modal img {
-
         display: inline-block !important;
-
         color: unset !important;
     }
 
-
     .larp-modal-thumb-bg {
-
         background: var(--larp-bg) !important;
     }
 
-
     .larp-modal-close {
-
         color: var(--larp-subtext) !important;
     }
 
-
     .larp-modal-secondary-btn {
-
         background: var(--larp-bg) !important;
-
         color: var(--larp-text) !important;
     }
 `;

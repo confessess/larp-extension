@@ -59,22 +59,7 @@ function handleInventoryInjection() {
 
 
 
-        const equippedBadge = isEquipped ? `
-            <div class="item-card-equipped" data-item-status="equipped">
-                <div class="item-card-equipped-label"></div>
-                <span class="larp-check-icon">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-        <path 
-            d="M20 6L9 17L4 12"
-            stroke="white"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-        />
-    </svg>
-</span>
-            </div>
-        ` : '';
+
 
 
 
@@ -91,9 +76,6 @@ function handleInventoryInjection() {
                 <div class="item-card-thumb"
                      data-thumbnail-target-id="${item.id}"
                      data-thumbnail-type="Asset">
-
-
-                    ${equippedBadge}
 
 
                     <span class="thumbnail-2d-container">
@@ -144,13 +126,9 @@ function handleInventoryInjection() {
 
 
 
-        // Match Roblox card spacing
+        // Match Roblox card spacing and font
         if (realCard) {
-
-            const styles =
-                window.getComputedStyle(realCard);
-
-
+            const styles = window.getComputedStyle(realCard);
             [
                 "width",
                 "height",
@@ -165,87 +143,38 @@ function handleInventoryInjection() {
                 "flexShrink",
                 "flexBasis"
             ].forEach(prop => {
-
-                el.style[prop] =
-                    styles[prop];
-
+                el.style[prop] = styles[prop];
             });
+
+            // Copy font from real card's name element to our name element
+            const realName = realCard.querySelector('.item-card-name');
+            const ourName = el.querySelector('.item-card-name');
+            if (realName && ourName) {
+                const nameStyles = window.getComputedStyle(realName);
+                ourName.style.fontFamily = nameStyles.fontFamily;
+                ourName.style.fontSize = nameStyles.fontSize;
+                ourName.style.fontWeight = nameStyles.fontWeight;
+                ourName.style.color = nameStyles.color;
+                ourName.style.letterSpacing = nameStyles.letterSpacing;
+            }
         }
 
 
 
         el.addEventListener('click', e => {
-
             e.preventDefault();
-
-
             state.equipped ||= [];
 
-
             if (state.equipped.includes(item.id)) {
-
-                state.equipped =
-                    state.equipped.filter(
-                        id => id !== item.id
-                    );
-
-
-                el.classList.remove(
-                    'larp-equipped'
-                );
-
-
-                el.querySelector(
-                    '.item-card-equipped'
-                )?.remove();
-
-
+                state.equipped = state.equipped.filter(id => id !== item.id);
+                el.classList.remove('larp-equipped');
             } else {
-
                 state.equipped.push(item.id);
-
-
-                el.classList.add(
-                    'larp-equipped'
-                );
-
-
-                if (!el.querySelector('.item-card-equipped')) {
-
-                    el.querySelector(
-                        '.item-card-thumb'
-                    ).insertAdjacentHTML(
-                        'afterbegin',
-                        `
-                        <div class="item-card-equipped" data-item-status="equipped">
-                            <div class="item-card-equipped-label"></div>
-                            <span class="larp-check-icon">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-        <path 
-            d="M20 6L9 17L4 12"
-            stroke="white"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-        />
-    </svg>
-</span>
-                        </div>
-                        `
-                    );
-
-                }
-
+                el.classList.add('larp-equipped');
             }
 
-
-            chrome.storage.local.set({
-                equipped: state.equipped
-            });
-
-
+            chrome.storage.local.set({ equipped: state.equipped });
             handleAvatarLarping();
-
         });
 
 
