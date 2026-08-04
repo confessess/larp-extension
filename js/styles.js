@@ -51,7 +51,6 @@ larpStyle.textContent = `
         --larp-modal-text: #191B1D;
     }
 
-    /* Larp injected cards */
     .avatar-card[data-sim-id],
     .list-item[data-sim-id].item-card {
         list-style: none !important;
@@ -59,7 +58,6 @@ larpStyle.textContent = `
         box-sizing: border-box !important;
     }
 
-    /* Equipped state */
     [data-sim-id] {
         cursor: pointer;
     }
@@ -69,7 +67,6 @@ larpStyle.textContent = `
         display: block !important;
     }
 
-    /* Dark overlay while worn */
     [data-sim-id].larp-equipped .item-card-thumb::after {
         content: "";
         position: absolute;
@@ -80,33 +77,31 @@ larpStyle.textContent = `
         pointer-events: none;
     }
 
-    /* White checkmark badge - top right corner like Roblox native */
     .larp-equipped-badge {
         position: absolute;
-        top: 8px;
-        right: 8px;
-        width: 20px;
-        height: 20px;
+        top: 6px;
+        right: 6px;
+        width: 24px;
+        height: 24px;
         background: #ffffff;
-        border-radius: 3px;
+        border-radius: 4px;
         z-index: 20;
         pointer-events: none;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.3);
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .larp-equipped-check {
-        width: 6px;
-        height: 10px;
-        border: solid #191B1D;
-        border-width: 0 2.5px 2.5px 0;
-        transform: rotate(45deg) translate(-1px, -1px);
+        width: 7px;
+        height: 12px;
+        border: solid #8c8c8c;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg) translate(-1px, 0px);
         display: block;
     }
 
-    /* Item name */
     [data-sim-id] .item-card-name {
         margin-top: 2px !important;
         font-size: 14px !important;
@@ -149,7 +144,6 @@ larpStyle.textContent = `
         background: transparent !important;
     }
 
-    /* Modal Styling */
     .larp-modal {
         background: var(--larp-modal-bg) !important;
         color: var(--larp-modal-text) !important;

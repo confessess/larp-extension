@@ -30,6 +30,7 @@ chrome.storage.local.get(['fakeRobux', 'setFakeRobux', 'inventory', 'history', '
             updateRobuxElements();
             handleBuyButton();
             handleOwnedStatus();
+            handleInventoryInjection();
         }
     });
     observer.observe(document.body, { childList: true, subtree: true });
