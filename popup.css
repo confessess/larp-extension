@@ -197,7 +197,8 @@ header {
     pointer-events: none;
 }
 
-input[type="number"] {
+input[type="number"],
+input[type="text"] {
     width: 100%;
     background: rgba(0, 0, 0, 0.35);
     border: 1px solid var(--border);
@@ -219,7 +220,8 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
-input[type="number"]:focus {
+input[type="number"]:focus,
+input[type="text"]:focus {
     border-color: var(--border-focus);
     box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1), inset 0 0 0 1px rgba(0, 212, 255, 0.1);
     background: rgba(0, 0, 0, 0.45);

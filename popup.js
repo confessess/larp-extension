@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const status = document.getElementById('status');
     const addItemIdInput = document.getElementById('manual-item-id');
     const addItemBtn = document.getElementById('add-item-btn');
+    const displayNameInput = document.getElementById('display-name');
+    const usernameInput = document.getElementById('username');
 
     const txList = document.getElementById('transaction-list');
     const txDesc = document.getElementById('tx-desc');
@@ -12,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const txAmount = document.getElementById('tx-amount');
     const txDate = document.getElementById('tx-date');
     const addTxBtn = document.getElementById('add-tx-btn');
-    
+
     if (txDate) txDate.valueAsDate = new Date();
 
     function showStatus(text) {
@@ -57,20 +59,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    chrome.storage.local.get(['fakeRobux', 'larpId', 'uiMode', 'transactions'], (result) => {
+    chrome.storage.local.get(['fakeRobux', 'larpId', 'uiMode', 'transactions', 'larpDisplayName', 'larpUsername'], (result) => {
         if (result.fakeRobux !== undefined) robuxInput.value = result.fakeRobux;
+        if (result.larpDisplayName !== undefined && displayNameInput) displayNameInput.value = result.larpDisplayName;
+        if (result.larpUsername !== undefined && usernameInput) usernameInput.value = result.larpUsername;
         renderTransactions(result.transactions || []);
     });
 
     saveBtn.addEventListener('click', () => {
         const amount = parseInt(robuxInput.value);
+        const displayName = displayNameInput ? displayNameInput.value.trim() : '';
+        const username = usernameInput ? usernameInput.value.trim() : '';
         if (isNaN(amount) && amount !== undefined) return;
-        chrome.storage.local.set({ fakeRobux: amount, setFakeRobux: amount }, () => {
+        chrome.storage.local.set({ 
+            fakeRobux: amount, 
+            setFakeRobux: amount,
+            larpDisplayName: displayName,
+            larpUsername: username
+        }, () => {
             showStatus('Changes Saved!');
         });
     });
 
     addTxBtn.addEventListener('click', () => {
+        if (!txDesc || !txType || !txAmount || !txDate) return;
         const desc = txDesc.value.trim();
         const type = txType.value;
         const amount = parseInt(txAmount.value);
@@ -154,8 +166,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     resetBtn.addEventListener('click', () => {
         if (confirm('Are you sure you want to reset all simulated data?')) {
-            chrome.storage.local.remove(['fakeRobux', 'inventory', 'history', 'equipped', 'transactions'], () => {
+            chrome.storage.local.remove(['fakeRobux', 'inventory', 'history', 'equipped', 'transactions', 'larpDisplayName', 'larpUsername'], () => {
                 robuxInput.value = 10000000;
+                if (displayNameInput) displayNameInput.value = '';
+                if (usernameInput) usernameInput.value = '';
                 if (txList) txList.innerHTML = '';
                 showStatus('Reset Complete');
             });

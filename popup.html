@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +10,6 @@
     <link rel="stylesheet" href="popup.css">
 <base target="_blank">
 </head>
-
 <body>
     <div class="container">
         <div class="glow glow-1"></div>
@@ -66,6 +64,38 @@
                 <div class="divider"></div>
 
                 <div class="input-group">
+                    <label for="display-name">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        Display Name
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="text" id="display-name" placeholder="Display Name" style="padding-left: 14px;">
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="input-group">
+                    <label for="username">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                            <circle cx="8.5" cy="7" r="4"/>
+                            <path d="M20 8v6M23 11h-6"/>
+                        </svg>
+                        Username
+                    </label>
+                    <div class="input-wrapper">
+                        <span class="robux-icon" style="position: static; margin-left: 14px; margin-right: 4px;">@</span>
+                        <input type="text" id="username" placeholder="username" style="padding-left: 8px;">
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="input-group">
                     <label for="manual-item-id">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 5v14M5 12h14" />
@@ -100,8 +130,6 @@
                 </div>
             </div>
 
-
-
             <footer>
                 <div class="status-row">
                     <div class="status-indicator">
@@ -115,5 +143,4 @@
     </div>
     <script src="popup.js"></script>
 </body>
-
 </html>
