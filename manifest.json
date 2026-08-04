@@ -30,6 +30,7 @@
                 "js/avatar_ui.js",
                 "js/purchase.js",
                 "js/ui.js",
+                "js/transactions.js",
                 "content.js"
             ],
             "run_at": "document_end"
