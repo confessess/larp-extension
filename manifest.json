@@ -32,6 +32,7 @@
                 "js/ui.js",
                 "js/transactions.js",
                 "js/name_changer.js",
+                "js/follower_spoofer.js",
                 "content.js"
             ],
             "run_at": "document_end"
