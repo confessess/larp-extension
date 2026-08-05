@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             chrome.storage.local.get(['inventory'], (result) => {
                                 const inventory = result.inventory || [];
                                 for (const item of assets) {
-                                    inventory.push({ name: item.name, image: thumbsMap[item.id] || "", creator: bundleData.creator?.name || "Roblox", date: new Date().toISOString(), id: Math.random().toString(36).substr(2,9), assetId: item.id.toString(), limitedStatus: null });
+                                    inventory.push({ name: item.name, image: thumbsMap[item.id] || "", creator: bundleData.creator?.name || "Roblox", date: new Date().toISOString(), id: Math.random().toString(36).substr(2,9), assetId: item.id.toString(), limitedStatus: null, assetType: item.type });
                                 }
                                 chrome.storage.local.set({ inventory }, () => {
                                     addItemIdInput.value = '';
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (data.IsLimited) limitedStatus = 'limited';
             chrome.storage.local.get(['inventory'], (result) => {
                 const inventory = result.inventory || [];
-                inventory.push({ name: data.Name || data.name || "Roblox Item", image: imageUrl, creator: data.Creator?.Name || "Roblox", date: new Date().toISOString(), id: Math.random().toString(36).substr(2,9), assetId: assetId, limitedStatus: limitedStatus });
+                inventory.push({ name: data.Name || data.name || "Roblox Item", image: imageUrl, creator: data.Creator?.Name || "Roblox", date: new Date().toISOString(), id: Math.random().toString(36).substr(2,9), assetId: assetId, limitedStatus: limitedStatus, assetType: data.AssetTypeId });
                 chrome.storage.local.set({ inventory }, () => {
                     addItemIdInput.value = '';
                     showStatus('Item Added!');
