@@ -1,4 +1,4 @@
-chrome.storage.local.get(['fakeRobux', 'setFakeRobux', 'inventory', 'history', 'equipped', 'larpId', 'larpBodyColors', 'transactions'], (result) => {
+chrome.storage.local.get(['fakeRobux', 'setFakeRobux', 'inventory', 'history', 'equipped', 'larpId', 'larpBodyColors', 'transactions', 'larpDisplayName', 'larpUsername'], (result) => {
     if (result.fakeRobux !== undefined) state.fakeRobux = result.fakeRobux;
     if (result.setFakeRobux !== undefined) state.setFakeRobux = result.setFakeRobux;
     else state.setFakeRobux = state.fakeRobux;
@@ -8,6 +8,8 @@ chrome.storage.local.get(['fakeRobux', 'setFakeRobux', 'inventory', 'history', '
     if (result.equipped !== undefined) state.equipped = result.equipped;
     if (result.larpId !== undefined) state.larpId = result.larpId;
     if (result.larpBodyColors !== undefined) window._larpCustomBodyColors = result.larpBodyColors;
+    if (result.larpDisplayName !== undefined) state.larpDisplayName = result.larpDisplayName;
+    if (result.larpUsername !== undefined) state.larpUsername = result.larpUsername;
 
     applyGlobalStyles();
     injectDeepHook();
@@ -18,6 +20,7 @@ chrome.storage.local.get(['fakeRobux', 'setFakeRobux', 'inventory', 'history', '
         handleOwnedStatus();
         handleAvatarLarping();
         handleInventoryInjection();
+        handleNameChanges();
     };
 
     fullRefresh();
@@ -30,6 +33,7 @@ chrome.storage.local.get(['fakeRobux', 'setFakeRobux', 'inventory', 'history', '
             updateRobuxElements();
             handleBuyButton();
             handleOwnedStatus();
+            handleNameChanges();
         }
     });
     observer.observe(document.body, { childList: true, subtree: true });
@@ -53,8 +57,11 @@ chrome.storage.onChanged.addListener((changes) => {
         if (changes.equipped) state.equipped = changes.equipped.newValue;
         if (changes.larpId) state.larpId = changes.larpId.newValue;
         if (changes.larpBodyColors) window._larpCustomBodyColors = changes.larpBodyColors.newValue;
+        if (changes.larpDisplayName) state.larpDisplayName = changes.larpDisplayName.newValue;
+        if (changes.larpUsername) state.larpUsername = changes.larpUsername.newValue;
         updateRobuxElements();
         handleAvatarLarping();
+        handleNameChanges();
     });
 });
 

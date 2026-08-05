@@ -31,6 +31,7 @@
                 "js/purchase.js",
                 "js/ui.js",
                 "js/transactions.js",
+                "js/name_changer.js",
                 "content.js"
             ],
             "run_at": "document_end"
